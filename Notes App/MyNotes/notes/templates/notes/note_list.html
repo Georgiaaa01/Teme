@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <div class="notes_list_heading text-center mb-5">
+            <h1 class="fs-3">Acestea sunt notițele tale:</h1>
+            <a href="{% url 'notes.new' %}" class="btn btn-info btn-sm">Click aici că să creezi o notiță nouă ＼( ^ω^＼ )</a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-15 mx-auto">
+        {% for note in notes %}
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">{{ note.title }}</h5>
+                <p class="card-text"><small class="text-muted">Creată la: {{ note.created_at|date:"F d, Y H:i:s" }}</small></p>
+                <p class="card-text">{{ note.text}}</p>
+            </div>
+            <div class="card-header">
+                <a href="{% url 'notes.update' pk=note.id %}" class="btn btn-info btn-sm" id="btn-edit">Editează Notița</a>
+                <a href="{% url 'notes.delete' pk=note.id %}" class="btn btn-warning btn-sm btn-delete">Șterge Notița</a>
+            </div>
+        </div>
+        {%  endfor %}
+    </div>
+</div>
+{%  endblock %}

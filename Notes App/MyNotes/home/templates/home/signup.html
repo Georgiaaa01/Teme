@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-success" value="Sign up" name="Submit" onclick="redirectToLogin();">
+        </form>
+    </div>
+</div>
+
+<script>
+    function redirectToLogin() {
+        // Redirecționare către pagina de autentificare după înregistrare
+        window.location.href = "{% url 'login' %}";
+        // genereaza dinamic un url pentru pagina de login, window e o proprietate in javascript care repr. url-ul paginii curente
+        // prin atribuirea unui nou url la window.location.href, se redirectioneaza userul la pagina de login
+    }
+</script>
+{% endblock %}

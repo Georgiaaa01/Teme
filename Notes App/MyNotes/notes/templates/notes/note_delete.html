@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col md-5">
+        <div class="vreau sa se centreze mesajul text-center">
+        <form action="" method="post">
+            {% csrf_token %}
+            <p style="font-weight: bold; font-size: 1.5rem;">Ești sigur/ă că vrei să ștergi notița? <q>{{note.title}}</q></p>
+            <input type="submit" class="btn btn-outline-danger" value="Da!" style="font-weight: bold; font-size: 1.25rem;">
+            <a href="{% url 'notes.list' %}" class="btn btn-outline-success" style="font-weight: bold; font-size: 1.25rem;">Nu, vreau înapoi la lista.</a>
+        </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
